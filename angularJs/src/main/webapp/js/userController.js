@@ -20,6 +20,8 @@ function userController($scope, $window, $http) {
     	
     	$http.put(url, user).success(function(data){
 			reset();
+			$(".btn-primary").attr("disabled", "disabled");
+			$(".btn-success").removeAttr("disabled");
 		});
     };
     
