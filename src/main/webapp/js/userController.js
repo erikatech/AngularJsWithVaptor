@@ -1,28 +1,28 @@
 function userController($scope, $window, $http) {
 
-	init = function () {
-		$http.get('/angularJs/users').success(function(data){
-			$scope.users = data;
-		});
-	}();
+    var init = function () {
+	$http.get('/angularJs/users').success(function(data){
+		$scope.users = data;
+	});
+    }();
 
     $scope.postUser = function () {
     	var user = angular.toJson({user : $scope.user});
     	$http.post('/angularJs/users', user).success(function(data){
     		$scope.users.unshift(data);
-			reset();
-		});
+		reset();
+	});
     };
 
     $scope.putUser = function () {
-    	var url = '/angularJs/users/' + $scope.user.id;
-    	var user = angular.toJson({user : $scope.user});
+    	var url = '/angularJs/users/' + $scope.user.id,
+       	    user = angular.toJson({user : $scope.user});
     	
     	$http.put(url, user).success(function(data){
-			reset();
-			$(".btn-primary").attr("disabled", "disabled");
-			$(".btn-success").removeAttr("disabled");
-		});
+		reset();
+		$(".btn-primary").attr("disabled", "disabled");
+		$(".btn-success").removeAttr("disabled");
+	});
     };
     
     $scope.deleteUser = function(user){
